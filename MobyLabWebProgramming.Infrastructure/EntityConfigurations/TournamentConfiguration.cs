@@ -8,15 +8,19 @@ public class TournamentConfiguration : IEntityTypeConfiguration<Tournament>
 {
     public void Configure(EntityTypeBuilder<Tournament> builder)
     {
-        builder.Property(e => e.Id)
+        builder.Property(t => t.Id)
             .IsRequired();
-        builder.HasKey(x => x.Id);
-        builder.Property(e => e.Name)
+        builder.HasKey(t => t.Id);
+        builder.Property(t => t.Name)
             .HasMaxLength(255)
             .IsRequired();
-        builder.Property(e => e.CreatedAt)
+        builder.Property(t => t.StartDate)
             .IsRequired();
-        builder.Property(e => e.UpdatedAt)
+        builder.Property(t => t.EndDate)
+            .IsRequired();
+        builder.Property(t => t.CreatedAt)
+            .IsRequired();
+        builder.Property(t => t.UpdatedAt)
             .IsRequired();
     }
 }

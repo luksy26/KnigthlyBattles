@@ -8,24 +8,19 @@ public class PlayerConfiguration : IEntityTypeConfiguration<Player>
 {
     public void Configure(EntityTypeBuilder<Player> builder)
     {
-        builder.Property(e => e.Id)
+        builder.Property(p => p.Id)
             .IsRequired();
-        builder.HasKey(x => x.Id);
-        builder.Property(e => e.Name)
-            .HasMaxLength(256)
+        builder.HasKey(p => p.Id);
+        builder.Property(p => p.Name)
+            .HasMaxLength(255)
             .IsRequired();
-        builder.Property(e => e.Rating)
+        builder.Property(p => p.Rating)
             .IsRequired();
-        builder.Property(e => e.CreatedAt)
+        builder.Property(p => p.Age)
             .IsRequired();
-        builder.Property(e => e.UpdatedAt)
+        builder.Property(p => p.CreatedAt)
             .IsRequired();
-
-        builder.HasOne(e => e.Tournament)
-            .WithMany(e => e.Players)
-            .HasForeignKey(e => e.TournamentId)
-            .HasPrincipalKey(e => e.Id)
-            .IsRequired()
-            .OnDelete(DeleteBehavior.Cascade);
+        builder.Property(p => p.UpdatedAt)
+            .IsRequired();
     }
 }
