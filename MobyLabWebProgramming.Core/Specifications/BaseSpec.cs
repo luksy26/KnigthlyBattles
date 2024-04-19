@@ -6,7 +6,7 @@ namespace MobyLabWebProgramming.Core.Specifications;
 
 /// <summary>
 /// These classes are used to implement the specification design pattern over the Ardalis Specification nuget package.
-/// It's constructors can be used by derived classes to avoid boiler plate code.
+/// Its constructors can be used by derived classes to avoid boiler plate code.
 /// Note the constraints imposed on the generic parameters.
 /// </summary>
 public abstract class BaseSpec<TDerived, T> : Specification<T> where TDerived : BaseSpec<TDerived, T> where T : BaseEntity
