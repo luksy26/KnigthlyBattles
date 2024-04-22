@@ -38,9 +38,9 @@ public class PlayerService : IPlayerService
 
     public async Task<ServiceResponse> AddPlayer(PlayerDTO player, UserDTO? requestingUser, CancellationToken cancellationToken = default)
     {
-        if (requestingUser != null && requestingUser.Role != UserRoleEnum.Admin)
+        if (requestingUser != null && requestingUser.Role != UserRoleEnum.Admin && requestingUser.Role != UserRoleEnum.Personnel)
         {
-            return ServiceResponse.FromError(new(HttpStatusCode.Forbidden, "Only the admin can add players!", ErrorCodes.CannotAdd));
+            return ServiceResponse.FromError(new(HttpStatusCode.Forbidden, "Only the admin or personnel can add players!", ErrorCodes.CannotAdd));
         }
 
         var result = await _repository.GetAsync(new PlayerSpec(player.Name), cancellationToken);
@@ -64,7 +64,7 @@ public class PlayerService : IPlayerService
     {
         if (requestingUser != null && requestingUser.Role != UserRoleEnum.Admin && requestingUser.Role != UserRoleEnum.Personnel) // Verify who can add the player
         {
-            return ServiceResponse.FromError(new(HttpStatusCode.Forbidden, "Only the admin or personnel can add a player", ErrorCodes.CannotUpdate));
+            return ServiceResponse.FromError(new(HttpStatusCode.Forbidden, "Only the admin or personnel can update a player", ErrorCodes.CannotUpdate));
         }
 
         var entity = await _repository.GetAsync(new PlayerSpec(player.Id), cancellationToken);

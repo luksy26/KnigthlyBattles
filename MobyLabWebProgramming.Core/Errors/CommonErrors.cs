@@ -11,4 +11,8 @@ public static class CommonErrors
     public static ErrorMessage FileNotFound => new(HttpStatusCode.NotFound, "File not found on disk!", ErrorCodes.PhysicalFileNotFound);
     public static ErrorMessage TechnicalSupport => new(HttpStatusCode.InternalServerError, "An unknown error occurred, contact the technical support!", ErrorCodes.TechnicalError);
     public static ErrorMessage PlayerNotFound => new(HttpStatusCode.InternalServerError, "Player doesn't exist!", ErrorCodes.EntityNotFound);
+    public static ErrorMessage TournamentNotFound => new(HttpStatusCode.InternalServerError, "Tournament doesn't exist!", ErrorCodes.EntityNotFound);
+    public static ErrorMessage MatchNotFound => new(HttpStatusCode.InternalServerError, "Match doesn't exist!", ErrorCodes.EntityNotFound);
+    public static ErrorMessage GameNotFound => new(HttpStatusCode.InternalServerError, "Game doesn't exist!", ErrorCodes.EntityNotFound);
+    public static ErrorMessage TimeControlNotFound => new(HttpStatusCode.InternalServerError, "Time Control doesn't exist!", ErrorCodes.EntityNotFound);
 }
