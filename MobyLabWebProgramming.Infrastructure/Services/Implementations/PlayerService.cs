@@ -29,7 +29,7 @@ public class PlayerService : IPlayerService
     }
     public async Task<ServiceResponse<PagedResponse<PlayerDTO>>> GetPlayers(PaginationSearchQueryParams pagination, CancellationToken cancellationToken = default)
     {
-        var result = await _repository.PageAsync(pagination, new PlayerProjectionSpec(pagination.Search), cancellationToken); // Use the specification and pagination API to get only some entities from the database.
+        var result = await _repository.PageAsync(pagination, new PlayerProjectionSpec(pagination.Search), cancellationToken);
 
         return ServiceResponse<PagedResponse<PlayerDTO>>.ForSuccess(result);
     }
@@ -62,7 +62,7 @@ public class PlayerService : IPlayerService
 
     public async Task<ServiceResponse> UpdatePlayer(PlayerUpdateDTO player, UserDTO? requestingUser, CancellationToken cancellationToken = default)
     {
-        if (requestingUser != null && requestingUser.Role != UserRoleEnum.Admin && requestingUser.Role != UserRoleEnum.Personnel) // Verify who can add the player
+        if (requestingUser != null && requestingUser.Role != UserRoleEnum.Admin && requestingUser.Role != UserRoleEnum.Personnel)
         {
             return ServiceResponse.FromError(new(HttpStatusCode.Forbidden, "Only the admin or personnel can update a player", ErrorCodes.CannotUpdate));
         }
@@ -75,7 +75,7 @@ public class PlayerService : IPlayerService
             entity.Age = player.Age ?? entity.Age;
             entity.Rating = player.Rating ?? entity.Rating;
 
-            await _repository.UpdateAsync(entity, cancellationToken); // Update the entity and persist the changes.
+            await _repository.UpdateAsync(entity, cancellationToken);
         }
 
         return ServiceResponse.ForSuccess();
@@ -88,8 +88,7 @@ public class PlayerService : IPlayerService
             return ServiceResponse.FromError(new(HttpStatusCode.Forbidden, "Only the admin or personnel can delete a player", ErrorCodes.CannotDelete));
         }
 
-        await _repository.DeleteAsync<Player>(id, cancellationToken); // Delete the entity.
-
+        await _repository.DeleteAsync<Player>(id, cancellationToken);
         return ServiceResponse.ForSuccess();
     }
 }
