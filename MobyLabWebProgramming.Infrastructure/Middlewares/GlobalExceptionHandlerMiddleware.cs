@@ -41,7 +41,7 @@ public class GlobalExceptionHandlerMiddleware
             else
             {
                 response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                await response.WriteAsync(JsonSerializer.Serialize(new ErrorMessage(HttpStatusCode.InternalServerError, "A unexpected error occurred!")));
+                await response.WriteAsync(JsonSerializer.Serialize(new ErrorMessage(HttpStatusCode.InternalServerError, "An unexpected error occurred!")));
             }
         }
     }
