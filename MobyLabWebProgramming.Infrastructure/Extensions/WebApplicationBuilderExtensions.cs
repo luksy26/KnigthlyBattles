@@ -174,10 +174,11 @@ public static class WebApplicationBuilderExtensions
             .AddTransient<IFileRepository, FileRepository>()
             .AddTransient<IUserFileService, UserFileService>()
             .AddTransient<IMailService, MailService>()
-            .AddTransient<IMatchService, MatchService>()
             .AddTransient<IPlayerService, PlayerService>()
             .AddTransient<ITournamentService, TournamentService>()
-            .AddTransient<ITimeControlService, TimeControlService>();
+            .AddTransient<ITimeControlService, TimeControlService>()
+            .AddTransient<IMatchService, MatchService>()
+            .AddTransient<IGameService, GameService>();
 
         return builder;
     }

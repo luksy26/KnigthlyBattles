@@ -13,6 +13,8 @@ public class GameConfiguration : IEntityTypeConfiguration<Game>
         builder.HasKey(g => g.Id);
         builder.Property(g => g.MatchId)
             .IsRequired();
+        builder.Property(g => g.GameNumber)
+            .IsRequired();
         builder.Property(g => g.CreatedAt)
             .IsRequired();
         builder.Property(g => g.UpdatedAt)
