@@ -48,6 +48,17 @@ public class TournamentController : AuthorizedController
     }
 
     [Authorize]
+    [HttpGet("{id:guid}")]
+    public async Task<ActionResult<RequestResponse<PagedResponse<PlayerDTO>>>> GetAllPlayers([FromRoute] Guid id, [FromQuery] PaginationSearchQueryParams pagination)
+    {
+        var currentUser = await GetCurrentUser();
+
+        return currentUser.Result != null ?
+            this.FromServiceResponse(await _tournamentService.GetAllPlayers(id, pagination)) :
+            this.ErrorMessageResult<PagedResponse<PlayerDTO>>(currentUser.Error);
+    }
+
+    [Authorize]
     [HttpPost]
     public async Task<ActionResult<RequestResponse>> Add([FromBody] TournamentAddDTO tournament)
     {

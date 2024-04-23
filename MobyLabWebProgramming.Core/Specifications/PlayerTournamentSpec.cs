@@ -12,4 +12,8 @@ public sealed class PlayerTournamentSpec : BaseSpec<PlayerTournamentSpec, Player
     {
         Query.Where(e => e.Tournament.Name == Tournament_name && e.Player.Name == Player_name);
     }
+    public PlayerTournamentSpec(Guid TournamentId, string filler)
+    {
+        Query.Where(e => e.TournamentId == TournamentId);
+    }
 }

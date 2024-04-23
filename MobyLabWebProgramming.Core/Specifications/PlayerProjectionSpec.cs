@@ -37,4 +37,18 @@ public sealed class PlayerProjectionSpec : BaseSpec<PlayerProjectionSpec, Player
 
         Query.Where(e => EF.Functions.ILike(e.Name, searchExpr));
     }
+    public PlayerProjectionSpec(string? search, List<Guid> ids)
+    {
+        search = !string.IsNullOrWhiteSpace(search) ? search.Trim() : null;
+
+        if (search == null)
+        {
+            Query.Where(e => ids.Contains(e.Id));
+            return;
+        }
+
+        var searchExpr = $"%{search.Replace(" ", "%")}%";
+
+        Query.Where(e => ids.Contains(e.Id) && EF.Functions.ILike(e.Name, searchExpr));
+    }
 }

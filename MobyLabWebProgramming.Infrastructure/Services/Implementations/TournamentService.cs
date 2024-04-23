@@ -33,6 +33,20 @@ public class TournamentService : ITournamentService
 
         return ServiceResponse<PagedResponse<TournamentDTO>>.ForSuccess(result);
     }
+
+    public async Task<ServiceResponse<PagedResponse<PlayerDTO>>> GetAllPlayers(Guid id, PaginationSearchQueryParams pagination, CancellationToken cancellationToken = default)
+    {
+        var result = await _repository.PageAsync(pagination, new PlayerTournamentSpec(id, ""), cancellationToken);
+
+        var playerTournamentlist = result.Data;
+
+        var playerIdList = playerTournamentlist.Select(pt => pt.PlayerId).ToList();
+
+        var result2 = await _repository.PageAsync(pagination, new PlayerProjectionSpec(pagination.Search, playerIdList), cancellationToken);
+
+        return ServiceResponse<PagedResponse<PlayerDTO>>.ForSuccess(result2);
+    }
+
     public async Task<ServiceResponse<int>> GetTournamentCount(CancellationToken cancellationToken = default) =>
         ServiceResponse<int>.ForSuccess(await _repository.GetCountAsync<Tournament>(cancellationToken));
 
