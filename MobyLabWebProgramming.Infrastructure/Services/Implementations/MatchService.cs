@@ -42,7 +42,7 @@ public class MatchService : IMatchService
         {
             return ServiceResponse.FromError(new(HttpStatusCode.Forbidden, "Only the admin and personnel can add matches!", ErrorCodes.CannotAdd));
         }
-        /*var result1 = await _repository.GetAsync(new TournamentProjectionSpec(match.TournamentId), cancellationToken);
+        var result1 = await _repository.GetAsync(new TournamentProjectionSpec(match.TournamentId), cancellationToken);
         string? tournament_name = result1?.Name;
 
         var result2 = await _repository.GetAsync(new PlayerProjectionSpec(match.Player1Id), cancellationToken);
@@ -60,7 +60,7 @@ public class MatchService : IMatchService
         {
             return ServiceResponse.FromError(new(HttpStatusCode.Conflict, "The match already exists!", ErrorCodes.MatchAlreadyExists));
         }
-        */
+        
         await _repository.AddAsync(new Match
         {
             TournamentId = match.TournamentId,

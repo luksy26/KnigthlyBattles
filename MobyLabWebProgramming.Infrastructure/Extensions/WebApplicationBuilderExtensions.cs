@@ -178,7 +178,8 @@ public static class WebApplicationBuilderExtensions
             .AddTransient<ITournamentService, TournamentService>()
             .AddTransient<ITimeControlService, TimeControlService>()
             .AddTransient<IMatchService, MatchService>()
-            .AddTransient<IGameService, GameService>();
+            .AddTransient<IGameService, GameService>()
+            .AddTransient<IPlayerTournamentService, PlayerTournamentService>();
 
         return builder;
     }

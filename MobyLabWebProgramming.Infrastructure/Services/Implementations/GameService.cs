@@ -42,25 +42,31 @@ public class GameService : IGameService
         {
             return ServiceResponse.FromError(new(HttpStatusCode.Forbidden, "Only the admin and personnel can add games!", ErrorCodes.CannotAdd));
         }
-        /*var result1 = await _repository.GetAsync(new TournamentProjectionSpec(match.TournamentId), cancellationToken);
+        MatchDTO? match = await _repository.GetAsync(new MatchProjectionSpec(game.MatchId), cancellationToken);
+
+        if (match == null)
+        {
+            return ServiceResponse.FromError(new(HttpStatusCode.BadRequest, "The match does not exist!", ErrorCodes.EntityNotFound));
+        }
+
+        var result1 = await _repository.GetAsync(new TournamentProjectionSpec(match.Tournament.Id), cancellationToken);
         string? tournament_name = result1?.Name;
 
-        var result2 = await _repository.GetAsync(new PlayerProjectionSpec(match.Player1Id), cancellationToken);
+        var result2 = await _repository.GetAsync(new PlayerProjectionSpec(match.Player1.Id), cancellationToken);
         string? player1_name = result2?.Name;
 
-        result2 = await _repository.GetAsync(new PlayerProjectionSpec(match.Player2Id), cancellationToken);
+        result2 = await _repository.GetAsync(new PlayerProjectionSpec(match.Player2.Id), cancellationToken);
         string? player2_name = result2?.Name;
 
-        var result3 = await _repository.GetAsync(new TimeControlProjectionSpec(match.TimeControlId), cancellationToken);
+        var result3 = await _repository.GetAsync(new TimeControlProjectionSpec(match.TimeControl.Id), cancellationToken);
         string? time_control_type = result3?.Type;
 
-        var result = await _repository.GetAsync(new MatchSpec(tournament_name, player1_name, player2_name, time_control_type), cancellationToken);
+        var result = await _repository.GetAsync(new GameSpec(tournament_name, player1_name, player2_name, time_control_type, game.GameNumber), cancellationToken);
 
         if (result != null)
         {
-            return ServiceResponse.FromError(new(HttpStatusCode.Conflict, "The match already exists!", ErrorCodes.MatchAlreadyExists));
+            return ServiceResponse.FromError(new(HttpStatusCode.Conflict, "The Game already exists!", ErrorCodes.GameAlreadyExists));
         }
-        */
         await _repository.AddAsync(new Game
         {
             MatchId = game.MatchId,

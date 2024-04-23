@@ -15,4 +15,5 @@ public static class CommonErrors
     public static ErrorMessage MatchNotFound => new(HttpStatusCode.InternalServerError, "Match doesn't exist!", ErrorCodes.EntityNotFound);
     public static ErrorMessage GameNotFound => new(HttpStatusCode.InternalServerError, "Game doesn't exist!", ErrorCodes.EntityNotFound);
     public static ErrorMessage TimeControlNotFound => new(HttpStatusCode.InternalServerError, "Time Control doesn't exist!", ErrorCodes.EntityNotFound);
+    public static ErrorMessage PlayerTournamentNotFound => new(HttpStatusCode.InternalServerError, "Player-Tournament entry doesn't exist!", ErrorCodes.EntityNotFound);
 }

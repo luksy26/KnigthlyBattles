@@ -18,6 +18,7 @@ public enum ErrorCodes
     TimeControlAlreadyExists,
     MatchAlreadyExists,
     GameAlreadyExists,
+    PlayerTournamentAlreadyExists,
     WrongPassword,
     CannotAdd,
     CannotUpdate,
