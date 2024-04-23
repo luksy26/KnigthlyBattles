@@ -36,7 +36,7 @@ public class TimeControlService : ITimeControlService
     public async Task<ServiceResponse<int>> GetTimeControlCount(CancellationToken cancellationToken = default) =>
         ServiceResponse<int>.ForSuccess(await _repository.GetCountAsync<TimeControl>(cancellationToken));
 
-    public async Task<ServiceResponse> AddTimeControl(TimeControlDTO time_control, UserDTO? requestingUser, CancellationToken cancellationToken = default)
+    public async Task<ServiceResponse> AddTimeControl(TimeControlAddDTO time_control, UserDTO? requestingUser, CancellationToken cancellationToken = default)
     {
         if (requestingUser != null && requestingUser.Role != UserRoleEnum.Admin && requestingUser.Role != UserRoleEnum.Personnel)
         {

@@ -36,7 +36,7 @@ public class TournamentService : ITournamentService
     public async Task<ServiceResponse<int>> GetTournamentCount(CancellationToken cancellationToken = default) =>
         ServiceResponse<int>.ForSuccess(await _repository.GetCountAsync<Tournament>(cancellationToken));
 
-    public async Task<ServiceResponse> AddTournament(TournamentDTO tournament, UserDTO? requestingUser, CancellationToken cancellationToken = default)
+    public async Task<ServiceResponse> AddTournament(TournamentAddDTO tournament, UserDTO? requestingUser, CancellationToken cancellationToken = default)
     {
         if (requestingUser != null && requestingUser.Role != UserRoleEnum.Admin && requestingUser.Role != UserRoleEnum.Personnel)
         {

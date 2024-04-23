@@ -9,7 +9,7 @@ public interface IPlayerService
     public Task<ServiceResponse<PlayerDTO>> GetPlayer(Guid id, CancellationToken cancellationToken = default);
     public Task<ServiceResponse<PagedResponse<PlayerDTO>>> GetPlayers(PaginationSearchQueryParams pagination, CancellationToken cancellationToken = default);
     public Task<ServiceResponse<int>> GetPlayerCount(CancellationToken cancellationToken = default);
-    public Task<ServiceResponse> AddPlayer(PlayerDTO player, UserDTO? requestingUser = default, CancellationToken cancellationToken = default);
+    public Task<ServiceResponse> AddPlayer(PlayerAddDTO player, UserDTO? requestingUser = default, CancellationToken cancellationToken = default);
     public Task<ServiceResponse> UpdatePlayer(PlayerUpdateDTO player, UserDTO? requestingUser = default, CancellationToken cancellationToken = default);
     public Task<ServiceResponse> DeletePlayer(Guid id, UserDTO? requestingUser = default, CancellationToken cancellationToken = default);
 }

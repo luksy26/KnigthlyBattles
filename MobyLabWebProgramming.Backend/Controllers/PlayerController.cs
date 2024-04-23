@@ -49,7 +49,7 @@ public class PlayerController : AuthorizedController
 
     [Authorize]
     [HttpPost]
-    public async Task<ActionResult<RequestResponse>> Add([FromBody] PlayerDTO player)
+    public async Task<ActionResult<RequestResponse>> Add([FromBody] PlayerAddDTO player)
     {
         var currentUser = await GetCurrentUser();
         

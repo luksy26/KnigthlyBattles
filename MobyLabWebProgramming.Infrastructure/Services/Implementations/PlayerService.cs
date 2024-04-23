@@ -36,7 +36,7 @@ public class PlayerService : IPlayerService
     public async Task<ServiceResponse<int>> GetPlayerCount(CancellationToken cancellationToken = default) =>
         ServiceResponse<int>.ForSuccess(await _repository.GetCountAsync<Player>(cancellationToken));
 
-    public async Task<ServiceResponse> AddPlayer(PlayerDTO player, UserDTO? requestingUser, CancellationToken cancellationToken = default)
+    public async Task<ServiceResponse> AddPlayer(PlayerAddDTO player, UserDTO? requestingUser, CancellationToken cancellationToken = default)
     {
         if (requestingUser != null && requestingUser.Role != UserRoleEnum.Admin && requestingUser.Role != UserRoleEnum.Personnel)
         {

@@ -49,7 +49,7 @@ public class TimeControlController : AuthorizedController
 
     [Authorize]
     [HttpPost]
-    public async Task<ActionResult<RequestResponse>> Add([FromBody] TimeControlDTO time_control)
+    public async Task<ActionResult<RequestResponse>> Add([FromBody] TimeControlAddDTO time_control)
     {
         var currentUser = await GetCurrentUser();
 

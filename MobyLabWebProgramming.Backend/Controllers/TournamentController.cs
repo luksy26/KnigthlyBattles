@@ -49,7 +49,7 @@ public class TournamentController : AuthorizedController
 
     [Authorize]
     [HttpPost]
-    public async Task<ActionResult<RequestResponse>> Add([FromBody] TournamentDTO tournament)
+    public async Task<ActionResult<RequestResponse>> Add([FromBody] TournamentAddDTO tournament)
     {
         var currentUser = await GetCurrentUser();
 

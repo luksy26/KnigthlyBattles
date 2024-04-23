@@ -1,3 +1,3 @@
 ﻿namespace MobyLabWebProgramming.Core.DataTransferObjects;
 
-public record PlayerTournamentUpdateDTO(Guid Id, PlayerDTO? Player = default, TournamentDTO? Tournament = default);
+public record PlayerTournamentUpdateDTO(Guid Id, PlayerUpdateDTO? Player = default, TournamentUpdateDTO? Tournament = default);

@@ -41,7 +41,8 @@ public sealed class GameProjectionSpec : BaseSpec<GameProjectionSpec, Game, Game
                 Type = e.Match.TimeControl.Type,
                 TimeInSeconds = e.Match.TimeControl.TimeInSeconds,
                 Increment = e.Match.TimeControl.Increment
-            }
+            },
+            Result = e.Match.Result
         },
         Result = e.Result,
         GameNumber = e.GameNumber,
