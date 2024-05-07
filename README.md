@@ -1,4 +1,4 @@
-# MobyLabWebProgramming
+# KnightlyBattles
 
 This project implements the backend of an appliation for organizing chess tournaments. It starts from an example framework/skeleton developed by my University to teach students the basics of web programming.
 
